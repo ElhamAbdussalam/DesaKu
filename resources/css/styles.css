@@ -1,0 +1,47 @@
+body {
+    background: linear-gradient(135deg, #4e73df, #224abe);
+}
+
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.form-control-user {
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: 0.2s ease-in-out;
+}
+
+.form-control-user:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+.btn-user {
+    border-radius: 2rem;
+    padding: 0.75rem;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-user:hover {
+    background-color: #1b47c3;
+    transform: scale(1.02);
+}
+
+.text-center h1 {
+    font-weight: 700;
+    color: #4e73df;
+}
+
+a.small {
+    color: #4e73df;
+    text-decoration: none;
+}
+
+a.small:hover {
+    text-decoration: underline;
+    color: #224abe;
+}
