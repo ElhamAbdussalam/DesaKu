@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand navbar-light topbar mb-4 shadow-sm"
-  style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+  style="background: linear-gradient(90deg, #4e73df 0%, #224abe 100%);">
 
   <!-- Sidebar Toggle (Topbar) -->
   <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3 text-white">

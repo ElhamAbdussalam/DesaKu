@@ -42,115 +42,133 @@
   ];
 @endphp
 
-<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar"
-  style="background: linear-gradient(180deg, #667eea 0%, #764ba2 100%); box-shadow: 2px 0 10px rgba(0,0,0,0.1);">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard"
-    style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1.5rem 1rem; margin-bottom: 1rem;">
-    <div class="sidebar-brand-icon"
-      style="background: rgba(255,255,255,0.2); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-      <i class="fas fa-home" style="font-size: 1.3rem;"></i>
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+    <div class="sidebar-brand-icon">
+      <i class="fas fa-home"></i>
     </div>
-    <div class="sidebar-brand-text mx-3" style="font-weight: 700; font-size: 1.3rem; letter-spacing: 1px;">DesaKu</div>
+    <div class="sidebar-brand-text mx-3">DesaKu</div>
   </a>
 
   <!-- Divider -->
-  <hr class="sidebar-divider my-0" style="border-color: rgba(255,255,255,0.2);">
+  <hr class="sidebar-divider my-0">
 
   <!-- Nav Items -->
   @auth
-    <div style="padding: 1rem 0;">
-      @foreach ($menus[auth()->user()->role_id] as $menu)
-        <li class="nav-item {{ request()->is($menu->path . '*') ? 'active' : '' }}"
-          style="margin: 0.3rem 0.8rem; list-style: none;">
-          <a class="nav-link menu-link" href="/{{ $menu->path }}"
-            style="border-radius: 12px; padding: 0.9rem 1rem; transition: all 0.3s ease;
-                    {{ request()->is($menu->path . '*') ? 'background: rgba(255,255,255,0.25); box-shadow: 0 4px 10px rgba(0,0,0,0.15);' : '' }}">
-            <div style="display: flex; align-items: center;">
-              <div
-                style="width: 35px; height: 35px; background: rgba(255,255,255,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem;">
-                <i class="{{ $menu->icon }}" style="font-size: 1rem;"></i>
-              </div>
-              <span style="font-weight: 500; font-size: 0.95rem;">{{ $menu->title }}</span>
-            </div>
-          </a>
-        </li>
-      @endforeach
-    </div>
+    @foreach ($menus[auth()->user()->role_id] as $menu)
+      <li class="nav-item {{ request()->is($menu->path . '*') ? 'active' : '' }}">
+        <a class="nav-link" href="/{{ $menu->path }}">
+          <i class="{{ $menu->icon }}"></i>
+          <span>{{ $menu->title }}</span>
+        </a>
+      </li>
+    @endforeach
   @endauth
 
   <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block" style="border-color: rgba(255,255,255,0.2); margin-top: auto;">
+  <hr class="sidebar-divider d-none d-md-block">
 
   <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline" style="padding: 1rem;">
-    <button class="rounded-circle border-0" id="sidebarToggle"
-      style="background: rgba(255,255,255,0.2); width: 40px; height: 40px; transition: all 0.3s ease;">
-      <i class="fas fa-angle-left" style="color: white;"></i>
-    </button>
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
 
 </ul>
 
 <style>
-  /* Hover effect untuk menu items */
-  .menu-link:hover {
-    background: rgba(255, 255, 255, 0.2) !important;
-    transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  /* Sidebar styling */
+  .sidebar {
+    background: linear-gradient(180deg, #4e73df 0%, #224abe 100%);
   }
 
-  /* Active state enhancement */
-  .nav-item.active .menu-link {
-    font-weight: 600;
+  /* Brand area */
+  .sidebar-brand {
+    height: 4.375rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    z-index: 1;
   }
 
-  /* Sidebar brand hover */
-  .sidebar-brand:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
-    transform: scale(1.02);
-    transition: all 0.3s ease;
+  .sidebar-brand-icon i {
+    font-size: 2rem;
   }
 
-  /* Toggle button hover */
+  .sidebar-brand-text {
+    font-size: 1.2rem;
+  }
+
+  /* Nav items */
+  .sidebar .nav-item {
+    position: relative;
+  }
+
+  .sidebar .nav-item .nav-link {
+    text-align: left;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .sidebar .nav-item .nav-link span {
+    font-size: 0.85rem;
+    display: inline;
+  }
+
+  .sidebar .nav-item .nav-link i {
+    font-size: 0.85rem;
+    margin-right: 0.25rem;
+  }
+
+  /* Active state */
+  .sidebar .nav-item.active .nav-link {
+    font-weight: 700;
+  }
+
+  /* Hover effect - simple */
+  .sidebar .nav-item .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar .nav-item.active .nav-link {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Divider */
+  .sidebar .sidebar-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 0 1rem;
+  }
+
+  /* Toggle button */
+  #sidebarToggle {
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
   #sidebarToggle:hover {
-    background: rgba(255, 255, 255, 0.3) !important;
-    transform: rotate(180deg);
+    background-color: rgba(255, 255, 255, 0.25);
   }
 
-  /* Smooth transitions */
-  .sidebar {
-    transition: all 0.3s ease;
+  #sidebarToggle::after {
+    font-weight: 900;
+    content: '\f104';
+    font-family: 'Font Awesome 5 Free';
+    margin-right: 0.1rem;
   }
 
-  /* Icon container hover effect */
-  .menu-link:hover div div {
-    background: rgba(255, 255, 255, 0.25) !important;
-    transform: scale(1.1);
-    transition: all 0.3s ease;
-  }
-
-  /* Custom scrollbar for sidebar */
-  .sidebar {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-  }
-
-  .sidebar::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .sidebar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .sidebar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-  }
-
-  .sidebar::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+  .sidebar.toggled #sidebarToggle::after {
+    content: '\f105';
+    font-family: 'Font Awesome 5 Free';
+    margin-left: 0.25rem;
   }
 </style>
